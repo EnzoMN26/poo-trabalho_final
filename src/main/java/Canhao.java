@@ -32,7 +32,7 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     @Override
     public void start() {
         setLimH(20,Params.WINDOW_WIDTH-20);
-        setLimV(Params.WINDOW_HEIGHT-100,Params.WINDOW_HEIGHT);
+        // setLimV(Params.WINDOW_HEIGHT-100,Params.WINDOW_HEIGHT);
     }
 
     @Override
@@ -40,9 +40,15 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
         if (jaColidiu()){
             Game.getInstance().setGameOver();
         }
-        setPosX(getX() + getDirH() * getSpeed());
-        setPosY(getY() + getDirV() * getSpeed());
 
+        if(getY() >= getLMinV() && getY() + getLargura() <= getLMaxV() && getX() >= getLMinH() && getX() + getAltura() <= getLMaxH()) {
+            setPosX(getX() + getDirH() * getSpeed());
+            setPosY(getY() + getDirV() * getSpeed());
+        } else {
+            setPosX(getX() + getDirH() * getSpeed() * -1);
+            setPosY(getY() + getDirV() * getSpeed() * -1);
+
+        }
         if (shot_timer > 0) shot_timer -= deltaTime;
     }
 

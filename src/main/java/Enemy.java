@@ -64,7 +64,7 @@ public abstract class Enemy implements Character{
 
             setPosX(getX() + getDirH() * getSpeed());
             // Se chegou no lado direito da tela ...
-            if (getX()+60 >= getLMaxH() || getX() < getLMinH()){
+            if (getX()+getLargura() >= getLMaxH() || getX() < getLMinH()){
                 // Inverte a direção
                 setDirH(getDirH()*-1);
                 // Sorteia o passo de avanço [1,5]

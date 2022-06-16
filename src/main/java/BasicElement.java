@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class BasicElement implements Character{
     int direction_horizontal = 0, direction_vertical = 0;
-    int lminV = 0, lmaxV = Params.WINDOW_HEIGHT;
+    int lminV = Params.WINDOW_HEIGHT /2, lmaxV = Params.WINDOW_HEIGHT;
     int lminH = 0, lmaxH = Params.WINDOW_WIDTH;
     int largura , altura;
     boolean colidiu = false;
@@ -52,8 +52,6 @@ public abstract class BasicElement implements Character{
 
     @Override
     public void testaColisao(Character outro){
-        System.out.println("vida: " + getVida());
-        System.out.println(colidiu);
         if (colidiu && getVida() == 0){
             return;
         }
