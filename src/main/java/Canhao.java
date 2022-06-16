@@ -15,6 +15,7 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     public Canhao(int px,int py){
         super(px,py);
         setSpeed(8);
+        setLimV(Params.WINDOW_HEIGHT/2, getLMaxV());
 
         try{
             // Carrega a imagem ajustando a altura para 40 pixels
@@ -45,10 +46,10 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             setPosX(getX() + getDirH() * getSpeed());
             setPosY(getY() + getDirV() * getSpeed());
         } else {
-            setPosX(getX() + getDirH() * getSpeed() * -1);
-            setPosY(getY() + getDirV() * getSpeed() * -1);
-
+            setPosX(getX() + getDirH() + (getX()  < getLMinH() ? -1 : 1) * getSpeed() * -1);
+            setPosY(getY() + getDirV() + (getY()  < getLMinV() ? -1 : 1) * getSpeed() * -1);
         }
+
         if (shot_timer > 0) shot_timer -= deltaTime;
     }
 
@@ -74,21 +75,12 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
 
         if (keyCode == KeyCode.SPACE){
             if (shot_timer <= 0) {
-                Game.getInstance().addChar(new Shot(getX()+getLargura(),getY()-4));
+                Game.getInstance().addChar(new Shot(getX()+(getLargura() / 2),getY()-4));
                 shot_timer = RELOAD_TIME;
             }
         }
     }
 
-    // @Override
-    // public int getAltura(){
-    //     return 80;
-    // }
-
-    // @Override
-    // public int getLargura(){
-    //     return 32;
-    // }
 
     @Override
     public void Draw(GraphicsContext graphicsContext) {
