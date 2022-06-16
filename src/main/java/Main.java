@@ -60,11 +60,12 @@ public class Main extends Application {
                 try{
                     // Carrega a imagem ajustando a altura para 40 pixels
                     // mantendo a proporção em ambas dimensões
-                    image =  new Image("space-raid-backdrop1.png");
+                    image =  new Image("Background.png");
                     // gc.clearRect(0, 0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                     gc.drawImage(image,0 ,0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                 }catch(Exception e){
                     System.out.println(e.getMessage());
+                    System.out.println("BACKGROUND");
                     System.exit(1);
                 }
                 

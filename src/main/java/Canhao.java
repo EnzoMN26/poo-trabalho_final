@@ -8,19 +8,23 @@ import javafx.scene.paint.Paint;
  * @author Bernardo Copstein, Rafael Copstein
  */
 public class Canhao extends BasicElement implements KeyboardCtrl{
-    private int RELOAD_TIME = 300000000; // Time is in nanoseconds
+    private int RELOAD_TIME = 508000000; // Time is in nanoseconds
     private int shot_timer = 0;
     private Image image;
 
     public Canhao(int px,int py){
         super(px,py);
+        setSpeed(8);
 
         try{
             // Carrega a imagem ajustando a altura para 40 pixels
             // mantendo a proporção em ambas dimensões
-            image =  new Image( "luana_tais_thomas.png",0,80,true,true );
+            image =  new Image("Ship.png",0,100,true,true );
+            // this.setLargAlt(100, 100);
+            this.setLargAlt((int) image.getWidth(),(int) image.getHeight());
         }catch(Exception e){
             System.out.println(e.getMessage());
+            System.out.println("SHIP");
             System.exit(1);
         }
     }
@@ -37,6 +41,8 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             Game.getInstance().setGameOver();
         }
         setPosX(getX() + getDirH() * getSpeed());
+        setPosY(getY() + getDirV() * getSpeed());
+
         if (shot_timer > 0) shot_timer -= deltaTime;
     }
 
@@ -50,25 +56,33 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             int dh = isPressed ? 1 : 0;
             setDirH(dh);
         }
+        if (keyCode == KeyCode.UP){
+            int dv = isPressed ? -1 : 0;
+            setDirV(dv);
+        }
+        if (keyCode == KeyCode.DOWN){
+            int dv = isPressed ? 1 : 0;
+            setDirV(dv);
+        }
+
+
         if (keyCode == KeyCode.SPACE){
             if (shot_timer <= 0) {
-                Game.getInstance().addChar(new Shot(getX()+22,getY()-32));
+                Game.getInstance().addChar(new Shot(getX()+getLargura(),getY()-4));
                 shot_timer = RELOAD_TIME;
             }
         }
-        //if (keyCode == KeyCode.UP) do nothing
-        //if (keyCode == KeyCode.DOWN) do nothing
     }
 
-    @Override
-    public int getAltura(){
-        return 80;
-    }
+    // @Override
+    // public int getAltura(){
+    //     return 80;
+    // }
 
-    @Override
-    public int getLargura(){
-        return 32;
-    }
+    // @Override
+    // public int getLargura(){
+    //     return 32;
+    // }
 
     @Override
     public void Draw(GraphicsContext graphicsContext) {

@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class Params {
     public static final String WINDOW_TITLE = "My Game V1.0";
-    public static final int WINDOW_WIDTH = 800;
-    public static final int WINDOW_HEIGHT = 600;
+    public static final int WINDOW_WIDTH = 1600;
+    public static final int WINDOW_HEIGHT = 900;
 
     private static Params params = null;
     private Random rnd;

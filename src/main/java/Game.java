@@ -64,21 +64,22 @@ public class Game {
         activeChars = new LinkedList<>();
 
         // Adiciona o canhao
-        canhao = new Canhao(400,500);
+        canhao = new Canhao(400,700);
         activeChars.add(canhao);
 
-        // Adiciona bolas
-        /*
-        for(int i=0; i<5; i++){
-            activeChars.add(new Ball(100+(i*60),60+i*40));
-        }
-        */
-        //activeChars.add(new BallSet(100,60));
-
-        // Adiciona pinguim
-        activeChars.add(new Inimigo(100, 270));
-        activeChars.add(new Inimigo(10,300));
-        activeChars.add(new Inimigo(50,100));
+        activeChars.add(new BallSet(100,60));
+        activeChars.add(new Shooting_Enemy(100,50, -1, 1.2));
+        activeChars.add(new Normal_Enemy(200, 100));
+        activeChars.add(new Normal_Enemy(300,150, -1));
+        activeChars.add(new Shooting_Enemy(400,200, -1, 1.9));
+        activeChars.add(new Normal_Enemy(500,250));
+        activeChars.add(new Shooting_Enemy(600,300, -1, 2.6));
+        activeChars.add(new Normal_Enemy(700,350));
+        activeChars.add(new Normal_Enemy(800,400, -1));
+        activeChars.add(new Normal_Enemy(900,450));
+        
+        // activeChars.add(new Shooting_Enemy(400,400, -1, 1));
+        
 
         for(Character c:activeChars){
             c.start();

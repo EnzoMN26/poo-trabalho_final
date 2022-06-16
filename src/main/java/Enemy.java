@@ -4,18 +4,18 @@ import javafx.scene.canvas.GraphicsContext;
  * Represents the basic game character
  * @author Bernardo Copstein and Rafael Copstein
  */
-public abstract class BasicElement implements Character{
+public abstract class Enemy implements Character{
     int direction_horizontal = 0, direction_vertical = 0;
     int lminV = 0, lmaxV = Params.WINDOW_HEIGHT;
     int lminH = 0, lmaxH = Params.WINDOW_WIDTH;
-    int largura , altura;
+    int largura = 32, altura = 32;
     boolean colidiu = false;
     boolean active = true;
     int posX, posY;
     int speed = 2;
-    int vida = 1;
+    int vida = 2;
 
-    public BasicElement(int startX,int startY){
+    public Enemy(int startX,int startY){
         posX = startX;
         posY = startY;
     }
@@ -40,6 +40,7 @@ public abstract class BasicElement implements Character{
         return(largura);
     }
 
+    
     @Override
     public int getVida() {
         return vida;
@@ -51,13 +52,42 @@ public abstract class BasicElement implements Character{
     }
 
     @Override
+    public void Update(long deltaTime){
+        if (jaColidiu() && getVida() == 0){
+            Game.getInstance().incPontos();
+            deactivate();
+        }else{
+            if (getY()+getLargura() >= lmaxV) {
+                // Adicionar mensagem de fim
+                System.exit(-1);
+            }
+
+            setPosX(getX() + getDirH() * getSpeed());
+            // Se chegou no lado direito da tela ...
+            if (getX()+60 >= getLMaxH() || getX() < getLMinH()){
+                // Inverte a direção
+                setDirH(getDirH()*-1);
+                // Sorteia o passo de avanço [1,5]
+                //setSpeed(Params.getInstance().nextInt(5)+5);
+                // Se ainda não chegou perto do chão, desce
+                /*if (getY() < 450){ */
+                setPosY(getY()+25);
+                //}
+            }
+
+       }
+    }
+
+    @Override
     public void testaColisao(Character outro){
-        System.out.println("vida: " + getVida());
-        System.out.println(colidiu);
         if (colidiu && getVida() == 0){
             return;
         }
         
+        if (outro instanceof Enemy) {
+            return;
+        }
+
         // Monta pontos
         int p1x = this.getX();
         int p1y = this.getY();
@@ -70,7 +100,7 @@ public abstract class BasicElement implements Character{
         int op2y = op1y+outro.getAltura();
 
         // Verifica colisão
-        if ((op2x >= p1x && op1x <= p2x) && (op2y >= p1y && op1y <= p2y)) {
+        if (p1x < op2x && p2x > op1x && p1y < op2y && p2y > op1y){
             colidiu = true;
             reduzVida();
         }
@@ -161,9 +191,6 @@ public abstract class BasicElement implements Character{
 
     @Override
     public abstract void start();
-
-    @Override
-    public abstract void Update(long deltaTime);
 
     @Override
     public abstract void Draw(GraphicsContext graphicsContext);
