@@ -6,20 +6,26 @@ public class Shooting_Enemy extends Enemy {
     private int RELOAD_TIME = 800000000; // Time is in nanoseconds
     private int shot_timer = 0;
     private int timer = 50;
+    private int vida = 1;
 
-    public Shooting_Enemy(int px,int py, double multiplier){
+    public Shooting_Enemy(int px,int py, double multiplier, int vida){
         super(px,py);
         setDirH(1);
         this.setImage();
+        super.setVida(vida);
         RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
     }
 
-    public Shooting_Enemy(int px, int py, int dirH, double multiplier){
+    // pode andar para a esquerda
+    public Shooting_Enemy(int px, int py, int dirH, double multiplier, int vida){
         super(px, py);
         setDirH(dirH);
         this.setImage();
+        super.setVida(vida);
         RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
     }
+
+    
 
     private void setImage(){
         try{

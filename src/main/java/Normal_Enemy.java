@@ -4,15 +4,17 @@ import javafx.scene.image.Image;
 public class Normal_Enemy extends Enemy {
     private Image image;
 
-    public Normal_Enemy(int px,int py){
+    public Normal_Enemy(int px,int py, int vida){
         super(px,py);
         setDirH(1);
         this.setImage();
+        super.setVida(vida);
     }
-    public Normal_Enemy(int px,int py, int dirH){
+    public Normal_Enemy(int px,int py, int dirH, int vida){
         super(px,py);
         setDirH(dirH);
         this.setImage();
+        super.setVida(vida);
     }
 
     private void setImage(){

@@ -46,8 +46,8 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             setPosX(getX() + getDirH() * getSpeed());
             setPosY(getY() + getDirV() * getSpeed());
         } else {
-            setPosX(getX() + getDirH() + (getX()  < getLMinH() ? -1 : 1) * getSpeed() * -1);
-            setPosY(getY() + getDirV() + (getY()  < getLMinV() ? -1 : 1) * getSpeed() * -1);
+            setPosX(getX() + getDirH() + (getX() < getLMinH() ? -1 : 1) * getSpeed() * -1);
+            setPosY(getY() + getDirV() + (getY() < getLMinV() ? -1 : 1) * getSpeed() * -1);
         }
 
         if (shot_timer > 0) shot_timer -= deltaTime;

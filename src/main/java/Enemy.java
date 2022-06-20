@@ -13,7 +13,7 @@ public abstract class Enemy implements Character{
     boolean active = true;
     int posX, posY;
     int speed = 2;
-    int vida = 2;
+    int vida = 1;
 
     public Enemy(int startX,int startY){
         posX = startX;
@@ -44,6 +44,10 @@ public abstract class Enemy implements Character{
     @Override
     public int getVida() {
         return vida;
+    }
+
+    public void setVida(int vida){
+        this.vida = vida;
     }
 
     @Override
@@ -100,7 +104,7 @@ public abstract class Enemy implements Character{
         int op2y = op1y+outro.getAltura();
 
         // Verifica colisão
-        if (p1x < op2x && p2x > op1x && p1y < op2y && p2y > op1y){
+        if ((p1x < op2x && p2x > op1x && p1y < op2y && p2y > op1y) || p1y > Params.WINDOW_HEIGHT || p2y < 0 ){
             colidiu = true;
             reduzVida();
         }

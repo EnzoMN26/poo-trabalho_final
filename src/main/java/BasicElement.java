@@ -72,7 +72,7 @@ public abstract class BasicElement implements Character{
         int op2y = op1y+outro.getAltura();
 
         // Verifica colisão
-        if ((op2x >= p1x && op1x <= p2x) && (op2y >= p1y && op1y <= p2y)) {
+        if (((op2x >= p1x && op1x <= p2x) && (op2y >= p1y && op1y <= p2y)) || p1y > Params.WINDOW_HEIGHT || p2y < 0) {
             colidiu = true;
             reduzVida();
         }
