@@ -9,8 +9,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
- * Handles window initialization and primary game setup
- * @author Bernardo Copstein, Rafael Copstein
+ * @author Bernardo Haab - 21200707
+ * @author Enzo Martins Nobre - 21200756
+ * @author Érico Panassol - 21201229
+ * @author Luana Thomas - 21200415
  */
 
 public class Main extends Application {

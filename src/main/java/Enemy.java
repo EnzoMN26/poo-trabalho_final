@@ -1,3 +1,10 @@
+/**
+ * @author Bernardo Haab - 21200707
+ * @author Enzo Martins Nobre - 21200756
+ * @author Érico Panassol - 21201229
+ * @author Luana Thomas - 21200415
+ */
+
 public abstract class Enemy extends BasicElement{
 
     public Enemy(int startX,int startY){

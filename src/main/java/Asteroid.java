@@ -1,6 +1,13 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * @author Bernardo Haab - 21200707
+ * @author Enzo Martins Nobre - 21200756
+ * @author Érico Panassol - 21201229
+ * @author Luana Thomas - 21200415
+ */
+
 public class Asteroid extends Enemy {
 
     public Asteroid(int startX, int startY) {
