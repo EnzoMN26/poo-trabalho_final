@@ -9,28 +9,28 @@ import javafx.scene.image.Image;
  */
 
 public class Shooting_Enemy extends Enemy {
-    private int RELOAD_TIME = 800000000; // Time is in nanoseconds
+    private int RELOAD_TIME; // Time is in nanoseconds
     private int shot_timer = 0;
     private int timer = 50;
 
-    public Shooting_Enemy(int px,int py, double multiplier, int vida){
+    public Shooting_Enemy(int px,int py, double multiplier, int vida, int RELOAD_TIME){
         super(px,py, vida);
         setDirH(1);
         this.defineImage();
-        RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
+        this.RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
     }
 
     // pode andar para a esquerda
-    public Shooting_Enemy(int px, int py, int dirH, double multiplier, int vida){
+    public Shooting_Enemy(int px, int py, int dirH, double multiplier, int vida, int RELOAD_TIME){
         super(px, py, vida);
         setDirH(dirH);
         this.defineImage();
-        RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
+        this.RELOAD_TIME = (int) (RELOAD_TIME*multiplier);
     }
 
     private void defineImage(){
         try{
-            setImage(new Image("Shooting_Enemy.png",0,40,true,true ));
+            setImage(new Image("Shooting_Enemy.png",0,40,true,true));
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("SHOOTING_ENEMY");

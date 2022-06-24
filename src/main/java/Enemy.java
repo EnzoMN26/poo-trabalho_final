@@ -25,7 +25,7 @@ public abstract class Enemy extends BasicElement{
             Game.getInstance().incPontos();
             deactivate();
         }else{
-            if (getY()+getLargura() >= lmaxV) {
+            if (getY()+getLargura() >= lmaxV && !(this instanceof Asteroid)) {
                 // Adicionar mensagem de fim
                 System.exit(-1);
             }

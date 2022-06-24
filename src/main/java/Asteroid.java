@@ -9,13 +9,15 @@ import javafx.scene.image.Image;
  */
 
 public class Asteroid extends Enemy {
+    // Random random = new Random();
+    // private int RELOAD_TIME = 800000000; // Time is in nanoseconds
+    // private int shot_timer = 0;
+    // private int timer = 50;
 
-    public Asteroid(int startX, int startY) {
+    public Asteroid(int startX, int startY, int x) {
         super(startX, startY);
-        setDirH(-1);
-        setDirV(0);
-
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        setDirH(x);
+        setDirV(1);
 
         try{
             setImage(new Image("asteroid.png",0,50,true,true ));
@@ -28,15 +30,17 @@ public class Asteroid extends Enemy {
 
     @Override
     public void start() {
-        setSpeed(8);
+        setSpeed(3);
 
     }
 
     @Override
     public void testaColisao(Character outro) {
-        if (colidiu || (outro instanceof Enemy)) {
+        if (outro instanceof Enemy) {
             return;
         }
+
+        super.testaColisao(outro);
 
         // Monta pontos
         int p2x = this.getX()+this.getLargura();
@@ -50,18 +54,17 @@ public class Asteroid extends Enemy {
 
     @Override
     public void Update(long deltaTime){
+        // super.Update(deltaTime);
         if (jaColidiu()){
             Game.getInstance().incPontos();
             deactivate();
         }else{
-            if (getY()+getLargura() >= lmaxV) {
-                // Adicionar mensagem de fim
-                System.exit(-1);
-            }
-
             setPosX(getX() + getDirH() * getSpeed());
-
-       }
+            setPosY(getY() + getDirV() * getSpeed());
+        }
+        // if (shot_timer > 0) shot_timer -= deltaTime;
+        // if (timer > 0) timer--;
+        // shot();
     }
 
 
@@ -71,4 +74,12 @@ public class Asteroid extends Enemy {
 
     }
 
+    // public void shot(){
+    //     int a = random.nextInt(200) + 500;
+    //     Asteroid shot = new Asteroid(a, 0, -1);
+    //     if (shot_timer <= 0 && timer <= 0) {
+    //         Game.getInstance().addChar(shot);
+    //         shot_timer = RELOAD_TIME;
+    //     }
+    // }
 }

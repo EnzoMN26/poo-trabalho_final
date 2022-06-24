@@ -1,7 +1,4 @@
-import java.security.Principal;
-
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 /**
@@ -11,7 +8,7 @@ import javafx.scene.input.KeyCode;
  * @author Luana Thomas - 21200415
  */
 
-public class Cannon extends PlayerElement implements KeyboardCtrl{
+public abstract class Cannon extends PlayerElement implements KeyboardCtrl{
     private int RELOAD_TIME = 508000000; // Time is in nanoseconds
     private int shot_timer = 0;
     
@@ -26,7 +23,7 @@ public class Cannon extends PlayerElement implements KeyboardCtrl{
 
     @Override
     public void Update(long deltaTime) {
-        if (jaColidiu()){
+        if (jaColidiu() && getVida() == 0){
             Game.getInstance().setGameOver();
         }
 
@@ -40,8 +37,6 @@ public class Cannon extends PlayerElement implements KeyboardCtrl{
 
         if (shot_timer > 0) shot_timer -= deltaTime;
     }
-    
-    
    
     public void setRELOAD_TIME(int rELOAD_TIME) {
         RELOAD_TIME = rELOAD_TIME;
@@ -58,14 +53,37 @@ public class Cannon extends PlayerElement implements KeyboardCtrl{
     public int getShot_timer() {
         return shot_timer;
     }
+ 
+    @Override
+    public void OnInput(KeyCode keyCode, boolean isPressed) {
+        if (keyCode == KeyCode.LEFT){
+            int dh = isPressed ? -1 : 0;
+            setDirH(dh);
+        }
+        if (keyCode == KeyCode.RIGHT){
+            int dh = isPressed ? 1 : 0;
+            setDirH(dh);
+        }
+        if (keyCode == KeyCode.UP){
+            int dv = isPressed ? -1 : 0;
+            setDirV(dv);
+        }
+        if (keyCode == KeyCode.DOWN){
+            int dv = isPressed ? 1 : 0;
+            setDirV(dv);
+        }
+        if (keyCode == KeyCode.SPACE){
+            if (getShot_timer() <= 0) {
+                this.shotQuantity();
+                setShot_timer(getRELOAD_TIME());
+            }
+        }
+    }
 
     @Override
     public void Draw(GraphicsContext graphicsContext) {
         graphicsContext.drawImage(getImage(), getX(),getY());
     }
 
-    @Override
-    public void OnInput(KeyCode keyCode, boolean isPressed) {
-        // TODO Auto-generated method stub
-    }
+    protected abstract void shotQuantity();
 }

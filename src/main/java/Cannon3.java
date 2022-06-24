@@ -7,15 +7,15 @@ import javafx.scene.image.Image;
  * @author Luana Thomas - 21200415
  */
 
-public class Cannon2 extends Cannon {
+public class Cannon3 extends Cannon {
 
-    public Cannon2(int px, int py, int vida) {
+    public Cannon3(int px, int py, int vida) {
         super(px,py, vida);
         setSpeed(8);
         setLimV(Params.WINDOW_HEIGHT/2, getLMaxV());
 
         try{
-            setImage(new Image("Ship2.png",0,100,true,true ));
+            setImage(new Image("teste.jpeg",0,100,true,true ));
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("SHIP2");
@@ -26,6 +26,9 @@ public class Cannon2 extends Cannon {
     @Override
     protected void shotQuantity() {
         Game.getInstance().addChar(new Shot(getX()+(getLargura() / 2),getY()-4));
+        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
+        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
+        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
         Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
     }
 }
