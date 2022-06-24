@@ -2,27 +2,21 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Normal_Enemy extends Enemy {
-    private Image image;
 
     public Normal_Enemy(int px,int py, int vida){
-        super(px,py);
+        super(px,py, vida);
         setDirH(1);
-        this.setImage();
-        super.setVida(vida);
+        this.defineImage();
     }
     public Normal_Enemy(int px,int py, int dirH, int vida){
-        super(px,py);
+        super(px,py, vida);
         setDirH(dirH);
-        this.setImage();
-        super.setVida(vida);
+        this.defineImage();
     }
 
-    private void setImage(){
+    private void defineImage(){
         try{
-            // Carrega a imagem ajustando a altura para 40 pixels
-            // mantendo a proporção em ambas dimensões
-            image =  new Image("Normal_Enemy.png",0,40,true,true );            
-            this.setLargAlt((int) image.getWidth(),(int) image.getHeight());
+            setImage(new Image("Normal_Enemy.png",0,40,true,true ));
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("SHOOTING_ENEMY");
@@ -36,16 +30,6 @@ public class Normal_Enemy extends Enemy {
     }
 
     public void Draw(GraphicsContext graphicsContext){
-        graphicsContext.drawImage(image, getX(),getY());
-    }
-
-    @Override
-    public void testaColisao(Character outro){
-        if (outro instanceof Normal_Enemy){
-
-            return;
-        }else{
-            super.testaColisao(outro);
-        }
+        graphicsContext.drawImage(getImage(), getX(),getY());
     }
 }

@@ -1,16 +1,14 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Paint;
 
 /**
  * Represents the game Gun
  * @author Bernardo Copstein, Rafael Copstein
  */
-public class Canhao extends BasicElement implements KeyboardCtrl{
+public class Canhao extends PlayerElement implements KeyboardCtrl{
     private int RELOAD_TIME = 508000000; // Time is in nanoseconds
     private int shot_timer = 0;
-    private Image image;
 
     public Canhao(int px,int py){
         super(px,py);
@@ -18,11 +16,7 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
         setLimV(Params.WINDOW_HEIGHT/2, getLMaxV());
 
         try{
-            // Carrega a imagem ajustando a altura para 40 pixels
-            // mantendo a proporção em ambas dimensões
-            image =  new Image("Ship.png",0,100,true,true );
-            // this.setLargAlt(100, 100);
-            this.setLargAlt((int) image.getWidth(),(int) image.getHeight());
+            setImage(new Image("Ship.png",0,100,true,true ));
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("SHIP");
@@ -33,7 +27,6 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     @Override
     public void start() {
         setLimH(20,Params.WINDOW_WIDTH-20);
-        // setLimV(Params.WINDOW_HEIGHT-100,Params.WINDOW_HEIGHT);
     }
 
     @Override
@@ -56,7 +49,7 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
     @Override
     public void OnInput(KeyCode keyCode, boolean isPressed) {
         if (keyCode == KeyCode.LEFT){
-            int dh = isPressed ? -1 : 0; 
+            int dh = isPressed ? -1 : 0;
             setDirH(dh);
         }
         if (keyCode == KeyCode.RIGHT){
@@ -72,7 +65,6 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
             setDirV(dv);
         }
 
-
         if (keyCode == KeyCode.SPACE){
             if (shot_timer <= 0) {
                 Game.getInstance().addChar(new Shot(getX()+(getLargura() / 2),getY()-4));
@@ -81,9 +73,8 @@ public class Canhao extends BasicElement implements KeyboardCtrl{
         }
     }
 
-
     @Override
     public void Draw(GraphicsContext graphicsContext) {
-        graphicsContext.drawImage(image, getX(),getY());
+        graphicsContext.drawImage(getImage(), getX(),getY());
     }
 }

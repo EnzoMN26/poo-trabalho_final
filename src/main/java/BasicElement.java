@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * Represents the basic game character
@@ -14,10 +15,17 @@ public abstract class BasicElement implements Character{
     int posX, posY;
     int speed = 2;
     int vida = 1;
+    Image imagem;
 
     public BasicElement(int startX,int startY){
         posX = startX;
         posY = startY;
+    }
+
+    public BasicElement(int startX,int startY, int vida){
+        posX = startX;
+        posY = startY;
+        this.vida = vida;
     }
 
     @Override
@@ -56,10 +64,6 @@ public abstract class BasicElement implements Character{
             return;
         }
 
-        if (outro instanceof BasicElement) {
-            return;
-        }
-        
         // Monta pontos
         int p1x = this.getX();
         int p1y = this.getY();
@@ -73,7 +77,7 @@ public abstract class BasicElement implements Character{
 
         // Verifica colisão
         if (((op2x >= p1x && op1x <= p2x) && (op2y >= p1y && op1y <= p2y)) || p1y > Params.WINDOW_HEIGHT || p2y < 0) {
-            colidiu = true;
+            setColidiu();
             reduzVida();
         }
     }
@@ -154,6 +158,17 @@ public abstract class BasicElement implements Character{
     @Override
     public void setColidiu(){
         colidiu = true;
+    }
+
+    @Override
+    public Image getImage() {
+        return this.imagem;
+    }
+
+    @Override
+    public void setImage(Image i) {
+        this.imagem = i;
+        setLargAlt((int)imagem.getWidth(), (int) imagem.getHeight());
     }
 
     @Override

@@ -4,10 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -17,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private Image image;
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         // Initialize Window
@@ -61,14 +59,13 @@ public class Main extends Application {
                     // Carrega a imagem ajustando a altura para 40 pixels
                     // mantendo a proporção em ambas dimensões
                     image =  new Image("Background.png");
-                    // gc.clearRect(0, 0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                     gc.drawImage(image,0 ,0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                     System.out.println("BACKGROUND");
                     System.exit(1);
                 }
-                
+
                 gc.fillText("Pontos: "+Game.getInstance().getPontos(), 10, 10);
                 gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
                 Game.getInstance().Draw(gc);
