@@ -7,16 +7,20 @@
 
 public abstract class Enemy extends BasicElement{
 
+    boolean saiuDaTela;
+
     public Enemy(int startX,int startY){
         super(startX, startY);
         posX = startX;
         posY = startY;
+        saiuDaTela = false;
     }
 
     public Enemy(int startX,int startY, int vida){
         super(startX, startY, vida);
         posX = startX;
         posY = startY;
+        saiuDaTela = false;
     }
 
     @Override
@@ -27,7 +31,7 @@ public abstract class Enemy extends BasicElement{
         }else{
             if (getY()+getLargura() >= lmaxV && !(this instanceof Asteroid)) {
                 // Adicionar mensagem de fim
-                System.exit(-1);
+                saiuDaTela = true;
             }
 
             setPosX(getX() + getDirH() * getSpeed());
@@ -41,6 +45,10 @@ public abstract class Enemy extends BasicElement{
        }
     }
 
+    public boolean isSaiuDaTela() {
+        return saiuDaTela;
+    }
+
     @Override
     public void testaColisao(Character outro){
         if (outro instanceof Enemy) {
@@ -48,4 +56,5 @@ public abstract class Enemy extends BasicElement{
         }
         super.testaColisao(outro);
     }
+
 }

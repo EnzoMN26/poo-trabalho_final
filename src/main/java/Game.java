@@ -14,6 +14,7 @@ import java.util.LinkedList;
 
 /*
     trabalho poo
+    - quando o inimigo chega no fim da tela o jogo da erro e fecha ao invés de terminar a partida (Resolvido, quando o inimigo chega ao fim da tela o canhão perde uma vida)
     - Cada personagem deve ter uma aparência e um comportamento diferente.
     - Manter 10 melhores pontuações. Apresentar ranking ao final de cada jogo.
     - 4 tipos de invasores (temos 3)
@@ -22,7 +23,7 @@ import java.util.LinkedList;
     - 3 tipos de canhões (temos 2)
     - vida do canhão = 3 (OK)
     - interface de vida e ponto
-    - desativar spawner de asteroide quando a fila acabar
+    - desativar spawner de asteroide quando a fila acabar (desativa quando mata todos os outros inimigos do jogo)
  */
 
 public class Game {
@@ -164,6 +165,8 @@ public class Game {
 
     private void loadGameOver() {
         // Tela que aparece quando o jogo termina
+        activeChars = new LinkedList<>();
+
     }
 
     public void Update(long currentTime, long deltaTime) {
@@ -171,18 +174,35 @@ public class Game {
             return;
         }
 
+        System.out.println(cannon.getVida());
+
+        int totalInimigos = 0; //total de inimigos que não são asteróides 
+
         for (int i = 0; i < activeChars.size(); i++) {
             Character este = activeChars.get(i);
             este.Update(deltaTime);
+            if (este instanceof Enemy) {
+                Enemy aux = (Enemy) este;
+                if (aux.isSaiuDaTela()) {
+                    cannon.reduzVida();
+                }
+            }
+
             for (int j = 0; j < activeChars.size(); j++) {
                 Character outro = activeChars.get(j);
                 if (este != outro) {
                     este.testaColisao(outro);
                 }
             }
+
+            if (!(este instanceof Asteroid) && !(este instanceof AsteroidSpawner)) {
+                totalInimigos++;
+            }
+            
         }
 
-        if (activeChars.size() == 1) {
+        //if (activeChars.size() == 1) {
+        if (totalInimigos == 1) {
             switch (faseAtual) {
                 case Fase1:
                     loadFase2();
@@ -235,4 +255,5 @@ public class Game {
             c.Draw(graphicsContext);
         }
     }
+    
 }

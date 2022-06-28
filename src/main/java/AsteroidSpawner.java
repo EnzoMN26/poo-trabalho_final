@@ -15,7 +15,7 @@ public class AsteroidSpawner extends Enemy {
     private int timer = 50;
 
     public AsteroidSpawner() {
-        super(-500, 0);
+        super(0, 0);
     }
 
     @Override
@@ -25,7 +25,21 @@ public class AsteroidSpawner extends Enemy {
     }
 
     @Override
-    public void testaColisao(Character outro) {    
+    public void testaColisao(Character outro) {  
+        if (outro instanceof Enemy) {
+            return;
+        }
+
+        super.testaColisao(outro);
+
+        // Monta pontos
+        int p2x = this.getX()+this.getLargura();
+
+        // Verifica se sai da tela
+        if (p2x < 0){
+            setColidiu();
+        }
+  
     }
 
     @Override
@@ -39,7 +53,7 @@ public class AsteroidSpawner extends Enemy {
 
     @Override
     public void Draw(GraphicsContext graphicsContext){
-    
+        graphicsContext.drawImage(getImage(), getX(),getY());
     }
 
     public void shot(){

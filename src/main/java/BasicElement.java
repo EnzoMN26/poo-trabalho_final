@@ -19,7 +19,7 @@ public abstract class BasicElement implements Character{
     int speed = 2;
     int vida = 1;
     Image imagem;
-
+    
     public BasicElement(int startX,int startY){
         posX = startX;
         posY = startY;
