@@ -67,6 +67,10 @@ public abstract class BasicElement implements Character{
             return;
         }
 
+        // if(this instanceof Boss){
+        //     System.out.println(getVida());
+        // }
+
         // Monta pontos
         int p1x = this.getX();
         int p1y = this.getY();

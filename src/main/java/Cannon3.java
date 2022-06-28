@@ -13,9 +13,10 @@ public class Cannon3 extends Cannon {
         super(px,py, vida);
         setSpeed(8);
         setLimV(Params.WINDOW_HEIGHT/2, getLMaxV());
+        setRELOAD_TIME(300000000);
 
         try{
-            setImage(new Image("teste.jpeg",0,100,true,true ));
+            setImage(new Image("Ship3.gif",0,100,true,true ));
         }catch(Exception e){
             System.out.println(e.getMessage());
             System.out.println("SHIP2");
@@ -26,9 +27,6 @@ public class Cannon3 extends Cannon {
     @Override
     protected void shotQuantity() {
         Game.getInstance().addChar(new Shot(getX()+(getLargura() / 2),getY()-4));
-        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
-        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
-        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
         Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
     }
 }
