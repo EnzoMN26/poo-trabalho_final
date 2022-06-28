@@ -95,6 +95,7 @@ public class Main extends Application {
 
                 gc.setFill(Paint.valueOf("#FFFF00"));
                 gc.fillText("Pontos: "+Game.getInstance().getPontos(), 10, 10);
+                gc.fillText("Vidas: "+Game.getInstance().getVidasCannon(), 10, 30);
                 // gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
                 Game.getInstance().Draw(gc);
                 if (Game.getInstance().isGameOver()){

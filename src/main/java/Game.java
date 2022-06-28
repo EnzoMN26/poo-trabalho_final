@@ -16,7 +16,7 @@ import javafx.scene.input.KeyCode;
     trabalho poo
     - quando o inimigo chega no fim da tela o jogo da erro e fecha ao invés de terminar a partida (Resolvido, quando o inimigo chega ao fim da tela o canhão perde uma vida)
     - Cada personagem deve ter uma aparência e um comportamento diferente.
-    - Manter 10 melhores pontuações. Apresentar ranking ao final de cada jogo.
+    - Manter 10 melhores pontuações. Apresentar ranking ao final de cada jogo. (OK)
     - 4 tipos de invasores (temos 3)
     - um dos invasores atira contra o canhão (OK)
     - 3 níveis (temos 1)
@@ -59,6 +59,10 @@ public class Game {
 
     public void incPontos() {
         pontos++;
+    }
+
+    public int getVidasCannon() {
+        return cannon.getVida();
     }
 
     public static Game getInstance() {
