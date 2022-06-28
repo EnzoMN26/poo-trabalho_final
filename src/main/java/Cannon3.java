@@ -26,7 +26,7 @@ public class Cannon3 extends Cannon {
 
     @Override
     protected void shotQuantity() {
-        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 2),getY()-4));
-        Game.getInstance().addChar(new Shot(getX()+(getLargura() / 4),getY()-4));
+        Game.getInstance().addChar(new Shot3(getX()+(getLargura() / 2) - 20,getY()-4));
+        // Game.getInstance().addChar(new Shot3(getX()+(getLargura() / 4),getY()-4));
     }
 }

@@ -1,18 +1,9 @@
-import java.io.File;
-import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.print.attribute.standard.Media;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.MediaPlayer;
 
 /**
  * @author Bernardo Haab - 21200707
@@ -166,7 +157,8 @@ public class Game {
         // }
 
         // URL url = getClass().getResource("undertale_megalovania.mp3");
-        // MediaPlayer a = new MediaPlayer(new Media(url.getPath()));
+        // System.out.println(url.toString());
+        // MediaPlayer a = new MediaPlayer(new Media(url.toString()));
         // a.setOnEndOfMedia(new Runnable() {
         //     public void run() {
         //         a.seek(Duration.ZERO);
