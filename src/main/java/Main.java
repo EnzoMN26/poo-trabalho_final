@@ -1,3 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -17,6 +25,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private Image image;
+    private List<Integer> listaPontuacao = new ArrayList<Integer>(11);
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,6 +43,21 @@ public class Main extends Application {
 
         // Setup Game object
         Game.getInstance().Start();
+
+        try {
+            URL url =  getClass().getResource("pontuacao.txt");
+            File arquivoPontos = new File(url.getPath());
+            Scanner scannner = new Scanner(arquivoPontos);
+
+            while (scannner.hasNextLine()) {
+                String pontuacao = scannner.nextLine();
+                listaPontuacao.add(Integer.parseInt(pontuacao));
+            }
+            listaPontuacao.sort((a, b) -> b-a);
+        } catch (Exception e) {
+            System.out.println("----------ERRO---------------");
+            System.out.println(e);
+        }
 
         // Register User Input Handler
         scene.setOnKeyPressed((KeyEvent event) -> {
@@ -72,6 +96,28 @@ public class Main extends Application {
                 gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
                 Game.getInstance().Draw(gc);
                 if (Game.getInstance().isGameOver()){
+                    int pontuacaoFinal = Game.getInstance().getPontos();
+                    if (listaPontuacao.size() < 10 || pontuacaoFinal > listaPontuacao.get(9)) {
+                        listaPontuacao.add(pontuacaoFinal);
+                        listaPontuacao = listaPontuacao.stream().sorted((a, b) -> b-a).limit(10).collect(Collectors.toList());
+                    }
+
+                    String conteudoArquivo = "";
+
+                    for (Integer pontuacao : listaPontuacao) {
+                        conteudoArquivo+= pontuacao+"\n";
+                    }
+
+                    try {
+                        URL url =  getClass().getResource("pontuacao.txt");
+                        FileWriter arquivo = new FileWriter(url.getPath());
+                        arquivo.write(conteudoArquivo);
+                        arquivo.close();
+
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
                     stop();
                 }
 

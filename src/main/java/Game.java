@@ -1,9 +1,9 @@
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-
-import java.util.List;
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 
 /**
  * @author Bernardo Haab - 21200707
@@ -124,12 +124,12 @@ public class Game {
         activeChars.add(new Normal_Enemy(800, 350, -1, 4));
         activeChars.add(new Normal_Enemy(900, 400, -1, 4));
         activeChars.add(new Shooting_Enemy(1000, 200, -1, 1.9, 1, 1500000000));
-        
+
         // activeChars.add(new Shooting_Enemy(400,400, -1, 1));
         // activeChars.add(new Normal_Enemy(900, 450, 4));
 
         activeChars.add(new AsteroidSpawner());
-    
+
 
         for (Character c : activeChars) {
             c.start();
@@ -139,7 +139,7 @@ public class Game {
     private void loadFase3() {
         // Repositório de personagens
         activeChars = new LinkedList<>();
-        
+
         // Adiciona o canhao
         cannon = new Cannon3(400, 700, 3);
         activeChars.add(cannon);
@@ -166,7 +166,7 @@ public class Game {
     private void loadGameOver() {
         // Tela que aparece quando o jogo termina
         activeChars = new LinkedList<>();
-
+        setGameOver();
     }
 
     public void Update(long currentTime, long deltaTime) {
@@ -174,9 +174,7 @@ public class Game {
             return;
         }
 
-        System.out.println(cannon.getVida());
-
-        int totalInimigos = 0; //total de inimigos que não são asteróides 
+        int totalInimigos = 0; //total de inimigos que não são asteróides
 
         for (int i = 0; i < activeChars.size(); i++) {
             Character este = activeChars.get(i);
@@ -198,7 +196,7 @@ public class Game {
             if (!(este instanceof Asteroid) && !(este instanceof AsteroidSpawner)) {
                 totalInimigos++;
             }
-            
+
         }
 
         //if (activeChars.size() == 1) {
@@ -208,7 +206,7 @@ public class Game {
                     loadFase2();
                     faseAtual = Fases.Fase2;
                     break;
-            
+
                 case Fase2:
                     loadFase3();
                     faseAtual = Fases.Fase3;
@@ -228,16 +226,16 @@ public class Game {
     public void OnInput(KeyCode keyCode, boolean isPressed) {
         if (isPressed) {
             switch (keyCode) {
-                case DIGIT1:                
+                case DIGIT1:
                     loadFase1();
                     faseAtual = Fases.Fase1;
                     break;
-            
-                case DIGIT2:                
+
+                case DIGIT2:
                     loadFase2();
                     faseAtual = Fases.Fase2;
                     break;
-            
+
                 case DIGIT3:
                     loadFase3();
                     faseAtual = Fases.Fase3;
@@ -255,5 +253,5 @@ public class Game {
             c.Draw(graphicsContext);
         }
     }
-    
+
 }
