@@ -14,6 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -92,8 +93,9 @@ public class Main extends Application {
                     System.exit(1);
                 }
 
+                gc.setFill(Paint.valueOf("#FFFF00"));
                 gc.fillText("Pontos: "+Game.getInstance().getPontos(), 10, 10);
-                gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
+                // gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
                 Game.getInstance().Draw(gc);
                 if (Game.getInstance().isGameOver()){
                     int pontuacaoFinal = Game.getInstance().getPontos();

@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 public abstract class Cannon extends PlayerElement implements KeyboardCtrl{
     private int RELOAD_TIME = 508000000; // Time is in nanoseconds
     private int shot_timer = 0;
-    
+
     public Cannon(int px,int py, int vida){
         super(px, py, vida);
     }
@@ -37,7 +37,7 @@ public abstract class Cannon extends PlayerElement implements KeyboardCtrl{
 
         if (shot_timer > 0) shot_timer -= deltaTime;
     }
-   
+
     public void setRELOAD_TIME(int rELOAD_TIME) {
         RELOAD_TIME = rELOAD_TIME;
     }
@@ -53,7 +53,7 @@ public abstract class Cannon extends PlayerElement implements KeyboardCtrl{
     public int getShot_timer() {
         return shot_timer;
     }
- 
+
     @Override
     public void OnInput(KeyCode keyCode, boolean isPressed) {
         if (keyCode == KeyCode.LEFT){

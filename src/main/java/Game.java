@@ -193,7 +193,7 @@ public class Game {
                 }
             }
 
-            if (!(este instanceof Asteroid) && !(este instanceof AsteroidSpawner)) {
+            if (!(este instanceof Asteroid) && !(este instanceof AsteroidSpawner) && !(este instanceof Shot)) {
                 totalInimigos++;
             }
 
