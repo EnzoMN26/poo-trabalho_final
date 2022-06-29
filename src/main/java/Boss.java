@@ -48,7 +48,7 @@ public class Boss extends Enemy{
     @Override
     public void Update(long deltaTime){
         if (jaColidiu() && getVida() == 0){
-            Game.getInstance().incPontos();
+            Game.getInstance().incPontos(15);
             deactivate();
         }else{
             setPosX(getX() + getDirH() * getSpeed());

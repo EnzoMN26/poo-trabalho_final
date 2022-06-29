@@ -56,7 +56,7 @@ public class Asteroid extends Enemy {
     public void Update(long deltaTime){
         // super.Update(deltaTime);
         if (jaColidiu()){
-            Game.getInstance().incPontos();
+            Game.getInstance().incPontos(1);
             deactivate();
         }else{
             setPosX(getX() + getDirH() * getSpeed());

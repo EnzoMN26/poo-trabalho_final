@@ -26,7 +26,6 @@ public abstract class Enemy extends BasicElement{
     @Override
     public void Update(long deltaTime){
         if (jaColidiu() && getVida() == 0){
-            Game.getInstance().incPontos();
             deactivate();
         }else{
             if (getY()+getLargura() >= lmaxV && !(this instanceof Asteroid)) {

@@ -61,8 +61,8 @@ public class Game {
         return pontos;
     }
 
-    public void incPontos() {
-        pontos++;
+    public void incPontos(int incremento) {
+        pontos+= incremento;
     }
 
     public int getVidasCannon() {
