@@ -93,12 +93,23 @@ public class Main extends Application {
                     System.exit(1);
                 }
 
-                gc.setFill(Paint.valueOf("#FFFF00"));
+                gc.setFill(Paint.valueOf("#F51600"));
                 gc.fillText("Pontos: "+Game.getInstance().getPontos(), 10, 10);
                 gc.fillText("Vidas: "+Game.getInstance().getVidasCannon(), 10, 30);
                 // gc.fillText("data: "+Game.getInstance().getDate().getDayOfMonth()+"/"+Game.getInstance().getDate().getDayOfYear(),10,30);
                 Game.getInstance().Draw(gc);
                 if (Game.getInstance().isGameOver()){
+                    try{
+                        // Carrega a imagem ajustando a altura para 40 pixels
+                        // mantendo a proporção em ambas dimensões
+                        image =  new Image("Background.png"); //se usar jpg fica MUITO lento
+                        gc.drawImage(image,0 ,0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
+                        System.out.println("BACKGROUND");
+                        System.exit(1);
+                    }
+                    gc.setFill(Paint.valueOf("#F51600"));
                     int pontuacaoFinal = Game.getInstance().getPontos();
                     if (listaPontuacao.size() < 10 || pontuacaoFinal > listaPontuacao.get(9)) {
                         listaPontuacao.add(pontuacaoFinal);
@@ -119,6 +130,13 @@ public class Main extends Application {
 
                     } catch (Exception e) {
                         System.out.println(e);
+                    }
+
+                    gc.fillText("Pontos Obtidos: "+Game.getInstance().getPontos(), 700, 300);
+                    gc.fillText("---Ranking---", 700, 320);
+
+                    for (int i = 0; i < listaPontuacao.size(); i++) {
+                        gc.fillText(listaPontuacao.get(i).toString(), 700, 340 + (i*20));
                     }
 
                     stop();
