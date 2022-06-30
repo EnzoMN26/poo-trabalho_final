@@ -12,24 +12,6 @@ import javafx.scene.input.KeyCode;
  * @author Luana Thomas - 21200415
  */
 
-/*
- * trabalho poo
- * - quando o inimigo chega no fim da tela o jogo da erro e fecha ao invés de
- * terminar a partida (Resolvido, quando o inimigo chega ao fim da tela o canhão
- * perde uma vida)
- * - Cada personagem deve ter uma aparência e um comportamento diferente.
- * - Manter 10 melhores pontuações. Apresentar ranking ao final de cada jogo.
- * (OK)
- * - 4 tipos de invasores (temos 3)
- * - um dos invasores atira contra o canhão (OK)
- * - 3 níveis (temos 1)
- * - 3 tipos de canhões (temos 2)
- * - vida do canhão = 3 (OK)
- * - interface de vida e ponto
- * - desativar spawner de asteroide quando a fila acabar (desativa quando mata
- * todos os outros inimigos do jogo)
- */
-
 public class Game {
     private static Game game = null;
     private Cannon cannon;
@@ -144,28 +126,6 @@ public class Game {
     }
 
     private void loadFase3() {
-        // tenta a musica
-        // try{
-        // URL url = getClass().getResource("undertale_megalovania.mp3");
-        // File file = new File(url.getPath());
-        // AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-        // Clip clip = AudioSystem.getClip();
-        // clip.open(audioStream);
-        // clip.start();
-        // }catch(Exception e){
-        // System.out.println(e);
-        // }
-
-        // URL url = getClass().getResource("undertale_megalovania.mp3");
-        // System.out.println(url.toString());
-        // MediaPlayer a = new MediaPlayer(new Media(url.toString()));
-        // a.setOnEndOfMedia(new Runnable() {
-        //     public void run() {
-        //         a.seek(Duration.ZERO);
-        //     }
-        // });
-        // a.play();
-
         // Repositório de personagens
         activeChars = new LinkedList<>();
 

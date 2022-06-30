@@ -20,6 +20,7 @@ public class Boss extends Enemy{
 
     public Boss(int px,int py){
         super(px,py, HP);
+        setTxIncremento(15);
         try{
             setImage(new Image("boss.gif",500,500,true,true));
         }catch(Exception e){
@@ -48,7 +49,7 @@ public class Boss extends Enemy{
     @Override
     public void Update(long deltaTime){
         if (jaColidiu() && getVida() == 0){
-            Game.getInstance().incPontos(15);
+            Game.getInstance().incPontos(getTxIncremento());
             deactivate();
         }else{
             setPosX(getX() + getDirH() * getSpeed());

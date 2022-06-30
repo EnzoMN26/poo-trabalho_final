@@ -14,6 +14,7 @@ public abstract class Enemy extends BasicElement{
         posX = startX;
         posY = startY;
         saiuDaTela = false;
+        setTxIncremento(2);
     }
 
     public Enemy(int startX,int startY, int vida){
@@ -21,11 +22,13 @@ public abstract class Enemy extends BasicElement{
         posX = startX;
         posY = startY;
         saiuDaTela = false;
+        setTxIncremento(2);
     }
 
     @Override
     public void Update(long deltaTime){
         if (jaColidiu() && getVida() == 0){
+            Game.getInstance().incPontos(getTxIncremento());
             deactivate();
         }else{
             if (getY()+getLargura() >= lmaxV && !(this instanceof Asteroid)) {
@@ -40,7 +43,6 @@ public abstract class Enemy extends BasicElement{
                 setDirH(getDirH()*-1);
                 setPosY(getY()+25);
             }
-
        }
     }
 

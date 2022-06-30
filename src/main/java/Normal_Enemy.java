@@ -36,14 +36,6 @@ public class Normal_Enemy extends Enemy {
         setSpeed(5);
     }
 
-    @Override
-    public void Update(long deltaTime) {
-        if (jaColidiu()) {
-            Game.getInstance().incPontos(2);
-        }
-        super.Update(deltaTime);
-    }
-
     public void Draw(GraphicsContext graphicsContext){
         graphicsContext.drawImage(getImage(), getX(),getY());
     }

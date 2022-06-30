@@ -19,7 +19,8 @@ public abstract class BasicElement implements Character{
     int speed = 2;
     int vida = 1;
     Image imagem;
-    
+    int txIncremento = 1;
+
     public BasicElement(int startX,int startY){
         posX = startX;
         posY = startY;
@@ -61,15 +62,19 @@ public abstract class BasicElement implements Character{
         vida--;
     }
 
+    public void setTxIncremento(int txIncremento) {
+        this.txIncremento = txIncremento;
+    }
+
+    public int getTxIncremento() {
+        return txIncremento;
+    }
+
     @Override
     public void testaColisao(Character outro){
         if (colidiu && getVida() == 0){
             return;
         }
-
-        // if(this instanceof Boss){
-        //     System.out.println(getVida());
-        // }
 
         // Monta pontos
         int p1x = this.getX();

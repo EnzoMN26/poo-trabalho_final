@@ -45,9 +45,7 @@ public class Shooting_Enemy extends Enemy {
 
     @Override
     public void Update(long deltaTime) {
-        if (jaColidiu()) {
-            Game.getInstance().incPontos(4);
-        }
+        setTxIncremento(4);
         super.Update(deltaTime);
 
         if (shot_timer > 0) shot_timer -= deltaTime;

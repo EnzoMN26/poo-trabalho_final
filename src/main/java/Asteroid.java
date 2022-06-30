@@ -18,7 +18,7 @@ public class Asteroid extends Enemy {
         super(startX, startY);
         setDirH(x);
         setDirV(1);
-
+        setTxIncremento(1);
         try{
             setImage(new Image("asteroid.png",0,50,true,true ));
         }catch(Exception e){
@@ -56,7 +56,7 @@ public class Asteroid extends Enemy {
     public void Update(long deltaTime){
         // super.Update(deltaTime);
         if (jaColidiu()){
-            Game.getInstance().incPontos(1);
+            Game.getInstance().incPontos(getTxIncremento());
             deactivate();
         }else{
             setPosX(getX() + getDirH() * getSpeed());
