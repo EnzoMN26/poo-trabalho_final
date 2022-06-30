@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 
 public class Boss extends Enemy{
 
-    private final static int HP = 100;
+    private final static int HP = 25;
     private int RELOAD_TIME = 150000000; // o pika = 150000000
     private int shot_timer = 0;
     private int timer = 50;

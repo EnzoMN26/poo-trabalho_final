@@ -22,6 +22,8 @@ import javafx.stage.Stage;
  * @author Enzo Martins Nobre - 21200756
  * @author Érico Panassol - 21201229
  * @author Luana Thomas - 21200415
+ * 
+ * Link para o GitHub https://github.com/luanatthomas/poo-trabalhofinal
  */
 
 public class Main extends Application {
@@ -85,7 +87,7 @@ public class Main extends Application {
                 try{
                     // Carrega a imagem ajustando a altura para 40 pixels
                     // mantendo a proporção em ambas dimensões
-                    image =  new Image("Background.png"); //se usar jpg fica MUITO lento
+                    image =  new Image("BackgroundFinal.png"); //se usar jpg fica MUITO lento
                     gc.drawImage(image,0 ,0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                 }catch(Exception e){
                     System.out.println(e.getMessage());
@@ -102,7 +104,7 @@ public class Main extends Application {
                     try{
                         // Carrega a imagem ajustando a altura para 40 pixels
                         // mantendo a proporção em ambas dimensões
-                        image =  new Image("Background.png"); //se usar jpg fica MUITO lento
+                        image =  new Image("BackgroundFinal.png"); //se usar jpg fica MUITO lento
                         gc.drawImage(image,0 ,0, Params.WINDOW_WIDTH, Params.WINDOW_HEIGHT);
                     }catch(Exception e){
                         System.out.println(e.getMessage());

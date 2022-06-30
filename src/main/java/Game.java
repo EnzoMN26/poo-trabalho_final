@@ -170,7 +170,7 @@ public class Game {
         activeChars = new LinkedList<>();
 
         // Adiciona o canhao
-        cannon = new Cannon3(400, 700, 100000);
+        cannon = new Cannon3(400, 700, 5);
         activeChars.add(cannon);
 
         // Adiciona o boss
